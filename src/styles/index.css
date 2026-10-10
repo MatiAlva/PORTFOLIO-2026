@@ -1,0 +1,275 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+
+/* The theme lives in `data-theme` on <html> (set before first paint in index.html). */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+@custom-variant light (&:where([data-theme='light'], [data-theme='light'] *));
+
+/* Static so every color is always emitted: the 3D scene reads them with getComputedStyle. */
+@theme static {
+  /* Palette — ink, bone and a single signal color. Everything else is opacity. */
+  --color-ink: #0b0b0c;
+  --color-bone: #ecebe6;
+  --color-signal: #ff4f1f;
+
+  /* Semantic colors. Dark values here, light overrides below. */
+  --color-bg: #0b0b0c;
+  --color-bg-elevated: #131315;
+  --color-fg: #ecebe6;
+  --color-fg-muted: rgb(236 235 230 / 0.62);
+  --color-fg-subtle: rgb(236 235 230 / 0.4);
+  --color-line: rgb(236 235 230 / 0.12);
+  --color-line-strong: rgb(236 235 230 / 0.28);
+  --color-accent: #ff4f1f;
+  --color-accent-contrast: #0b0b0c;
+  --color-selection: rgb(255 79 31 / 0.35);
+  --color-aurora-teal: #2ee6b8;
+  --color-aurora-blue: #3d7bff;
+
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-serif: 'Instrument Serif', 'Times New Roman', serif;
+}
+
+@theme {
+  /* Fluid type scale (min @ 360px → max @ 1600px). */
+  --text-*: initial;
+  --text-xs: 0.75rem;
+  --text-sm: clamp(0.8125rem, 0.78rem + 0.1vw, 0.875rem);
+  --text-base: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.04rem + 0.4vw, 1.375rem);
+  --text-xl: clamp(1.375rem, 1.2rem + 0.8vw, 2rem);
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.6vw, 3rem);
+  --text-3xl: clamp(2.5rem, 1.8rem + 3.2vw, 5rem);
+  --text-display: clamp(3.5rem, 1.6rem + 9.5vw, 13rem);
+
+  --leading-tight: 0.92;
+  --leading-snug: 1.15;
+  --leading-body: 1.6;
+  --tracking-tight: -0.045em;
+  --tracking-label: 0.08em;
+
+  --spacing-section: clamp(6rem, 4rem + 10vw, 14rem);
+  --spacing-gutter: clamp(1.25rem, 0.8rem + 2vw, 2.5rem);
+  --spacing-nav: 4.5rem;
+  --container-site: 1720px;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  [data-theme='dark'] {
+    color-scheme: dark;
+  }
+
+  [data-theme='light'] {
+    --color-bg: #efede8;
+    --color-bg-elevated: #e6e3dc;
+    --color-fg: #121212;
+    --color-fg-muted: rgb(18 18 18 / 0.68);
+    --color-fg-subtle: rgb(18 18 18 / 0.5);
+    --color-line: rgb(18 18 18 / 0.12);
+    --color-line-strong: rgb(18 18 18 / 0.3);
+    /* Slightly deeper signal so it keeps contrast on the light background. */
+    --color-accent: #d93d0b;
+    --color-accent-contrast: #efede8;
+    --color-selection: rgb(217 61 11 / 0.25);
+    --color-aurora-teal: #12b58c;
+    --color-aurora-blue: #3d6bff;
+    color-scheme: light;
+  }
+
+  /* Easter egg accents (Konami code). */
+  [data-accent='acid'] {
+    --color-accent: #b8f53d;
+  }
+  [data-accent='ion'] {
+    --color-accent: #3dc4f5;
+  }
+  [data-accent='rose'] {
+    --color-accent: #ff3d7f;
+  }
+  [data-theme='light'][data-accent='acid'] {
+    --color-accent: #4f7a00;
+  }
+  [data-theme='light'][data-accent='ion'] {
+    --color-accent: #006f99;
+  }
+  [data-theme='light'][data-accent='rose'] {
+    --color-accent: #c2124f;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scroll-padding-top: var(--spacing-nav);
+    background: var(--color-bg);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    min-height: 100svh;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+    transition:
+      background-color 900ms var(--ease-in-out),
+      color 900ms var(--ease-in-out);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 500;
+    line-height: var(--leading-snug);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-selection);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* The custom cursor replaces the native one only on fine pointers; text fields keep theirs. */
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none;
+  }
+  .has-custom-cursor :is(input, textarea, select, [contenteditable='true']) {
+    cursor: text;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Registered so the Work section tint can transition smoothly between project colors. */
+@property --work-tint {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
+/* Shared typographic and layout primitives. */
+@utility label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-fg-muted);
+}
+
+@utility serif-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+@utility site-container {
+  width: 100%;
+  max-width: var(--container-site);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+/* Theme switch: a circular reveal through the View Transitions API. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-new(root) {
+  animation: theme-reveal 900ms var(--ease-in-out);
+}
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+  to {
+    clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 50%) var(--vt-y, 50%));
+  }
+}
+
+/* Animations: `animate-hero-pulse`, `animate-marquee-scroll`� Stack uses `stack-spin` directly. */
+@theme {
+  --animate-hero-pulse: hero-pulse 2.4s var(--ease-out) infinite;
+  --animate-hero-scan: hero-scan 2.2s var(--ease-in-out) infinite;
+  --animate-about-spin: about-spin 24s linear infinite;
+}
+
+/* Inline so `--marquee-duration` resolves on the track, not on :root. */
+@theme inline {
+  --animate-marquee-scroll: marquee-scroll var(--marquee-duration, 40s) linear infinite;
+}
+
+@keyframes hero-pulse {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes hero-scan {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes about-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes stack-spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-100%);
+  }
+}

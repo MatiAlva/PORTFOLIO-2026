@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="__SITE_LOCALE__" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#0b0b0c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <!--seo:start-->
+    <!--seo:end-->
+    <script src="/theme-init.js"></script>
+    <link rel="stylesheet" href="/src/styles/index.css" />
+  </head>
+  <body>
+    <div id="root">
+      <!-- Pre-JS shell: visually identical to the first frame of the React preloader. -->
+      <div
+        class="fixed inset-0 flex items-end justify-between bg-bg p-[clamp(1.25rem,3vw,2.5rem)] font-mono text-xs leading-none font-medium tracking-label text-fg uppercase"
+        aria-hidden="true"
+      >
+        <span>__SITE_INITIALS__</span>
+        <span>000</span>
+      </div>
+    </div>
+    <noscript>
+      <div class="mx-auto max-w-[40rem] px-6 py-16">
+        <h1>__SITE_NAME__</h1>
+        <p>__SITE_ROLE__</p>
+        <p>
+          Este portafolio es una experiencia interactiva y necesita JavaScript. Igualmente puedes
+          escribirme a <a href="mailto:__SITE_EMAIL__">__SITE_EMAIL__</a>.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
