@@ -4,6 +4,8 @@ Portfolio personal de **Alvarez Matias**, Full Stack Developer / Software Engine
 interactiva con una escena 3D en tiempo real, contenido en español e inglés y descarga del CV
 según el idioma. Sitio 100 % estático, sin backend.
 
+**Demo:** [portfolio-2026-mati-alva.vercel.app](https://portfolio-2026-mati-alva.vercel.app)
+
 [GitHub](https://github.com/MatiAlva) · [LinkedIn](https://www.linkedin.com/in/matias-ema-alvarez) · matyy01.ma@gmail.com
 
 ## Características
@@ -29,7 +31,7 @@ según el idioma. Sitio 100 % estático, sin backend.
 
 ## Cómo correrlo
 
-Requisitos: **Node.js ≥ 20.19** y npm.
+Requisitos: **Node.js 22** y npm.
 
 ```bash
 npm install
@@ -46,7 +48,7 @@ npm run dev      # http://localhost:5173
 ## Estructura
 
 ```
-public/            Archivos estáticos y CVs (public/cv/cv-es.pdf, cv-en.pdf)
+public/            Archivos estáticos, CVs e imagen para compartir (og-image.jpg)
 src/
   components/      3d/, sections/, layout/, navigation/, ui/
   data/            Contenido editable (perfil, experiencia, tecnologías, redes)
@@ -66,6 +68,7 @@ si falta alguna traducción.
 - `src/data/skills.ts` — tecnologías del gráfico.
 - `src/data/socials.ts` — redes sociales.
 - `public/cv/` — reemplazar `cv-es.pdf` y `cv-en.pdf` manteniendo los nombres.
+- `index.html` — título, descripción e imagen que se ven al compartir el link.
 
 La sección de proyectos está desactivada por ahora (ruta, menú y sección comentados con `TODO`).
 

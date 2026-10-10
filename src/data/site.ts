@@ -5,7 +5,7 @@ import type { SiteConfig } from '@/types/content';
 const profile = {
   name: 'Alvarez Matias',
   initials: 'AM',
-  url: 'https://your-domain.com',
+  url: 'https://portfolio-2026-mati-alva.vercel.app',
   email: 'matyy01.ma@gmail.com',
   timezone: 'America/Argentina/Buenos_Aires',
   location: 'Buenos Aires, AR',

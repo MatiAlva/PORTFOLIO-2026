@@ -30,7 +30,7 @@ function upsertCanonical(href: string) {
 
 /**
  * Keeps head tags in sync during client-side navigation and language changes. The initial
- * HTML for every route is already generated at build time by `scripts/seo-plugin.ts`.
+ * tags that crawlers and link previews read are static in `index.html`.
  */
 export function applySeo(
   site: SiteConfig,

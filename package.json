@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Immersive 3D portfolio for a full stack developer / software engineer.",
   "engines": {
-    "node": ">=20.19"
+    "node": "22.x"
   },
   "scripts": {
     "dev": "vite",

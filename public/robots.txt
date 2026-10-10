@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-2026-mati-alva.vercel.app/sitemap.xml

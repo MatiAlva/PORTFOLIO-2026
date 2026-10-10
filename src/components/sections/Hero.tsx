@@ -3,7 +3,6 @@ import { m, useInView, useMotionValueEvent, useScroll, useTransform } from 'moti
 import { useExperience } from '@/context/experience';
 import { useContent } from '@/context/locale';
 import { useBoot } from '@/hooks/useBoot';
-import { useLocalTime } from '@/hooks/useLocalTime';
 import { usePageVisible } from '@/hooks/usePageVisible';
 import { bootStore } from '@/lib/boot';
 import { DURATION, EASE_OUT } from '@/lib/constants';
@@ -52,7 +51,6 @@ export function Hero() {
   const section = useRef<HTMLElement>(null);
   const inView = useInView(section);
   const pageVisible = usePageVisible();
-  const localTime = useLocalTime(site.timezone);
   const scene = useHeroScene(device.webgl);
 
   const { scrollYProgress } = useScroll({ target: section, offset: ['start start', 'end start'] });
@@ -166,9 +164,7 @@ export function Hero() {
           className="mt-12 flex items-center justify-between border-t border-line pt-4"
           {...intro(0.9)}
         >
-          <span className="label">
-            {site.location} — <time>{localTime}</time>
-          </span>
+          <span className="label">{site.location}</span>
           <span className="label inline-flex items-center gap-3" aria-hidden="true">
             {ui.hero.scroll}
             <span className="relative h-px w-12 overflow-hidden bg-line-strong after:absolute after:inset-0 after:animate-hero-scan after:bg-fg" />
