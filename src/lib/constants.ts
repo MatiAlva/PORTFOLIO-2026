@@ -34,8 +34,8 @@ export const MEDIA_QUERIES = {
 export const BOOT = {
   /** Shortest time the preloader stays visible, so it never flickers. */
   minDuration: 900,
-  /** Hard cap: content is revealed even if web fonts are still loading. */
-  maxDuration: 2600,
+  /** Hard cap: content is revealed even if web fonts or the 3D scene are still loading. */
+  maxDuration: 5000,
 } as const;
 
 /** Scroll distance (px) after which the navigation switches to its condensed state. */

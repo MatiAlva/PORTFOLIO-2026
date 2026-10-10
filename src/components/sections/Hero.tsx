@@ -5,6 +5,7 @@ import { useContent } from '@/context/locale';
 import { useBoot } from '@/hooks/useBoot';
 import { useLocalTime } from '@/hooks/useLocalTime';
 import { usePageVisible } from '@/hooks/usePageVisible';
+import { bootStore } from '@/lib/boot';
 import { DURATION, EASE_OUT } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { SceneErrorBoundary } from '@/components/3d/SceneErrorBoundary';
@@ -13,47 +14,30 @@ import { sceneState } from '@/components/3d/sceneState';
 import { MagneticButton } from '@/components/ui/MagneticButton';
 import { SplitReveal } from '@/components/ui/SplitReveal';
 
-const loadScene = () => import('@/components/3d/Scene');
-const Scene = lazy(loadScene);
+const Scene = lazy(() => import('@/components/3d/Scene'));
 
 const YEAR = new Date().getFullYear();
 
-const SCENE_START_DELAY = 1200;
-const SCENE_IDLE_TIMEOUT = 1500;
+const SCENE_TASK = 'scene';
 
-type SceneStatus = 'pending' | 'loading' | 'ready' | 'failed';
+type SceneStatus = 'loading' | 'ready' | 'failed';
 
 /**
- * The 3D scene is progressive enhancement. Downloading, parsing and compiling it is the heaviest
- * main-thread work on the page, so it only starts once the hero copy has been revealed and the
- * intro animation has settled, then fades in on its first drawn frame. The static fallback is
- * only for devices without WebGL or after a failure — never a placeholder, so visitors don't see
- * a different shape swap into the real one.
+ * The 3D scene loads behind the preloader, which waits for its first drawn frame (capped by
+ * `BOOT.maxDuration`), so the hero is revealed with the shape already in place. The static
+ * fallback is only for devices without WebGL or after a failure — never a placeholder, so
+ * visitors don't see a different shape swap into the real one.
  */
-function useHeroScene(enabled: boolean, booted: boolean) {
-  const [status, setStatus] = useState<SceneStatus>(enabled ? 'pending' : 'failed');
+function useHeroScene(enabled: boolean) {
+  const [status, setStatus] = useState<SceneStatus>(enabled ? 'loading' : 'failed');
 
   useEffect(() => {
-    if (status !== 'pending' || !booted) return;
-    let cancelled = false;
-    let idle = 0;
-    const load = () => {
-      loadScene().then(
-        () => !cancelled && setStatus('loading'),
-        () => !cancelled && setStatus('failed'),
-      );
-    };
-    const timer = window.setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        idle = window.requestIdleCallback(load, { timeout: SCENE_IDLE_TIMEOUT });
-      } else load();
-    }, SCENE_START_DELAY);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-      if (idle) window.cancelIdleCallback(idle);
-    };
-  }, [status, booted]);
+    if (enabled && !bootStore.getSnapshot().booted) bootStore.register(SCENE_TASK);
+  }, [enabled]);
+
+  useEffect(() => {
+    if (status !== 'loading') bootStore.resolve(SCENE_TASK);
+  }, [status]);
 
   const onReady = useCallback(() => setStatus('ready'), []);
   const onFailure = useCallback(() => setStatus('failed'), []);
@@ -69,7 +53,7 @@ export function Hero() {
   const inView = useInView(section);
   const pageVisible = usePageVisible();
   const localTime = useLocalTime(site.timezone);
-  const scene = useHeroScene(device.webgl, booted);
+  const scene = useHeroScene(device.webgl);
 
   const { scrollYProgress } = useScroll({ target: section, offset: ['start start', 'end start'] });
   useMotionValueEvent(scrollYProgress, 'change', (progress) => {

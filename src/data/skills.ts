@@ -210,6 +210,14 @@ const entries: SkillEntry[] = [
       en: 'Small commits and a clean history on GitHub, GitLab and Bitbucket.',
     },
   ],
+  [
+    'CI/CD',
+    'platform',
+    {
+      es: 'Pipelines que corren tests y despliegan automáticamente en cada cambio.',
+      en: 'Pipelines that run tests and deploy automatically on every change.',
+    },
+  ],
 ];
 
 const toSkills = (locale: Locale): Skill[] =>

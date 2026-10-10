@@ -34,7 +34,7 @@ export const site: Record<Locale, SiteConfig> = {
     cv: { href: '/cv/cv-es.pdf', fileName: 'AlvarezMatias-CV-ES.pdf' },
     availability: {
       open: true,
-      label: 'Disponible para proyectos',
+      label: 'Abierto a nuevas oportunidades',
     },
     manifesto:
       'Escribo software que *resuelve problemas reales*. Productos donde la arquitectura, los datos y la experiencia de usuario se piensan juntos: confiables, mantenibles y *listos para escalar*.',
@@ -70,15 +70,15 @@ export const site: Record<Locale, SiteConfig> = {
       ],
     },
     contact: {
-      eyebrow: '¿Tienes un proyecto?',
+      eyebrow: '¿Buscas sumar a alguien al equipo?',
       headline: 'Construyamos algo *sólido*.',
       subline:
-        'Abierto a proyectos freelance, colaboraciones con startups y puestos full stack o frontend. Suelo responder en dos días hábiles.',
+        'Busco sumarme a una empresa en relación de dependencia, en un puesto full stack o frontend. Suelo responder en dos días hábiles.',
       cvNote: 'Toda mi trayectoria en una página.',
       marquee: [
-        'Disponible para proyectos',
-        'Freelance y full-time',
-        'Remoto — todo el mundo',
+        'Abierto a nuevas oportunidades',
+        'Full stack y frontend',
+        'Relación de dependencia',
         'Hablemos',
       ],
     },
@@ -95,7 +95,7 @@ export const site: Record<Locale, SiteConfig> = {
     cv: { href: '/cv/cv-en.pdf', fileName: 'AlvarezMatias-CV-EN.pdf' },
     availability: {
       open: true,
-      label: 'Available for select projects',
+      label: 'Open to new opportunities',
     },
     manifesto:
       'I write software that *solves real problems*. Products where architecture, data and user experience are designed together — reliable, maintainable and *ready to scale*.',
@@ -131,15 +131,15 @@ export const site: Record<Locale, SiteConfig> = {
       ],
     },
     contact: {
-      eyebrow: 'Have a project?',
+      eyebrow: 'Looking to grow your team?',
       headline: "Let's build something *solid*.",
       subline:
-        'Open to freelance projects, startup collaborations and full stack or frontend roles. I usually reply within two working days.',
+        'I am looking to join a company as a full-time employee, in a full stack or frontend role. I usually reply within two working days.',
       cvNote: 'My whole track record on one page.',
       marquee: [
-        'Available for select projects',
-        'Freelance & full-time',
-        'Remote — worldwide',
+        'Open to new opportunities',
+        'Full stack & frontend',
+        'Full-time employment',
         'Let’s talk',
       ],
     },

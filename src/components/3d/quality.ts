@@ -11,6 +11,7 @@ export interface QualitySettings {
 
 export const QUALITY: Record<QualityTier, QualitySettings> = {
   high: { coreDetail: 64, particles: 2200, shards: 28, dpr: [1, 2], antialias: true },
-  medium: { coreDetail: 40, particles: 1200, shards: 18, dpr: [1, 1.5], antialias: true },
-  low: { coreDetail: 20, particles: 500, shards: 8, dpr: [0.75, 1], antialias: false },
+  medium: { coreDetail: 40, particles: 1200, shards: 18, dpr: [1.25, 2], antialias: true },
+  // Phones land here: below 1.5x DPR (or without MSAA) the core looks pixelated on dense screens.
+  low: { coreDetail: 32, particles: 500, shards: 8, dpr: [1.25, 1.5], antialias: true },
 };

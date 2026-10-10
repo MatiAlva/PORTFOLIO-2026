@@ -22,7 +22,7 @@ const SECTIONS = [Manifesto, Experience, Stack, About, Contact];
 /**
  * Mounts the sections below the hero one per frame, so the first render is split into short
  * tasks instead of one long main-thread block. The preloader does not wait for them: the hero
- * reveals as soon as fonts are ready. Deep links (`/#contact`) and later visits mount
+ * reveals as soon as fonts and the 3D scene are ready. Deep links (`/#contact`) and later visits mount
  * everything at once so targets exist before scrolling.
  */
 function useStagedSections(eager: boolean): number {

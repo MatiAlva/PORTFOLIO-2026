@@ -27,7 +27,7 @@ export function Contact() {
           {ui.contact.eyebrow}
         </p>
 
-        <h2 className="mt-8 text-display leading-tight font-medium tracking-[-0.055em]">
+        <h2 className="mt-8 text-display leading-tight font-medium tracking-[-0.055em] max-[640px]:text-[clamp(2.25rem,12vw,3.5rem)]">
           <SplitReveal
             id="contact-eyebrow"
             text={contact.eyebrow}
